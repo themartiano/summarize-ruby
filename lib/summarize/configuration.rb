@@ -3,11 +3,12 @@
 module Summarize
   class Configuration
     attr_accessor :binary_path, :default_model, :default_length, :default_language,
-                  :timeout, :retries, :env
+                  :default_cli, :timeout, :retries, :env
 
     def initialize
       @binary_path = find_binary
       @default_model = "auto"
+      @default_cli = nil
       @default_length = nil
       @default_language = nil
       @timeout = nil

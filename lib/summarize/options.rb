@@ -26,7 +26,8 @@ module Summarize
       firecrawl: "--firecrawl",
       preprocess: "--preprocess",
       theme: "--theme",
-      metrics: "--metrics"
+      metrics: "--metrics",
+      cli: "--cli"
     }.freeze
 
     BOOLEAN_FLAGS = {

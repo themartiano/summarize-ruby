@@ -117,6 +117,7 @@ module Summarize
     def apply_defaults(opts)
       defaults = {}
       defaults[:model] = config.default_model if config.default_model && config.default_model != "auto"
+      defaults[:cli] = config.default_cli if config.default_cli
       defaults[:length] = config.default_length if config.default_length
       defaults[:language] = config.default_language if config.default_language
       defaults[:timeout] = config.timeout if config.timeout
