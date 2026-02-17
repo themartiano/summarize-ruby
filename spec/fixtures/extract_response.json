@@ -1,0 +1,33 @@
+{
+  "input": {
+    "kind": "url",
+    "url": "https://example.com/article",
+    "timeoutMs": 120000,
+    "format": "md",
+    "model": "auto",
+    "language": "auto"
+  },
+  "env": {
+    "hasOpenAIKey": true,
+    "hasAnthropicKey": false,
+    "hasGoogleKey": false,
+    "hasOpenRouterKey": false,
+    "hasXaiKey": false
+  },
+  "extracted": {
+    "kind": "asset",
+    "siteName": "Example",
+    "title": "Test Article",
+    "description": "A test article for testing",
+    "content": "# Test Article\n\nThis is the full extracted markdown content.",
+    "contentLength": 55,
+    "mediaType": "text/html",
+    "source": "readability",
+    "diagnostics": {}
+  },
+  "slides": null,
+  "prompt": "",
+  "llm": null,
+  "metrics": null,
+  "summary": null
+}

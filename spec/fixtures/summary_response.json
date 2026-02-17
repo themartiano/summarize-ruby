@@ -1,0 +1,55 @@
+{
+  "input": {
+    "kind": "url",
+    "url": "https://example.com/article",
+    "timeoutMs": 120000,
+    "length": {
+      "kind": "preset",
+      "preset": "xl"
+    },
+    "model": "auto",
+    "language": "auto"
+  },
+  "env": {
+    "hasOpenAIKey": true,
+    "hasAnthropicKey": false,
+    "hasGoogleKey": false,
+    "hasOpenRouterKey": false,
+    "hasXaiKey": false
+  },
+  "extracted": {
+    "kind": "asset",
+    "siteName": "Example",
+    "title": "Test Article",
+    "description": "A test article for testing",
+    "content": "This is the full extracted content of the article.",
+    "contentLength": 50,
+    "mediaType": "text/html",
+    "source": "readability",
+    "diagnostics": {}
+  },
+  "slides": null,
+  "prompt": "Summarize the following content...",
+  "llm": {
+    "provider": "openai",
+    "model": "gpt-5-mini",
+    "strategy": "single"
+  },
+  "metrics": {
+    "llm": [
+      {
+        "provider": "openai",
+        "model": "gpt-5-mini",
+        "calls": 1,
+        "promptTokens": 1200,
+        "completionTokens": 350,
+        "totalTokens": 1550
+      }
+    ],
+    "services": {
+      "firecrawl": { "requests": 0 },
+      "apify": { "requests": 0 }
+    }
+  },
+  "summary": "## Key Points\n\n- This is a test summary\n- It has multiple bullet points\n- The article covers testing"
+}
