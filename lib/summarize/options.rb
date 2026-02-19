@@ -27,7 +27,11 @@ module Summarize
       preprocess: "--preprocess",
       theme: "--theme",
       metrics: "--metrics",
-      cli: "--cli"
+      cli: "--cli",
+      slides_dir: "--slides-dir",
+      slides_scene_threshold: "--slides-scene-threshold",
+      slides_max: "--slides-max",
+      slides_min_duration: "--slides-min-duration"
     }.freeze
 
     BOOLEAN_FLAGS = {
@@ -36,8 +40,12 @@ module Summarize
       no_cache: "--no-cache",
       no_media_cache: "--no-media-cache",
       verbose: "--verbose",
+      debug: "--debug",
       no_color: "--no-color",
-      plain: "--plain"
+      plain: "--plain",
+      slides: "--slides",
+      slides_debug: "--slides-debug",
+      slides_ocr: "--slides-ocr"
     }.freeze
 
     def initialize(opts = {})

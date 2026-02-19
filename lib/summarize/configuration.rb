@@ -2,11 +2,12 @@
 
 module Summarize
   class Configuration
-    attr_accessor :binary_path, :default_model, :default_length, :default_language,
+    attr_accessor :default_model, :default_length, :default_language,
                   :default_cli, :timeout, :retries, :env
+    attr_writer :binary_path
 
     def initialize
-      @binary_path = find_binary
+      @binary_path = nil
       @default_model = "auto"
       @default_cli = nil
       @default_length = nil
@@ -16,18 +17,17 @@ module Summarize
       @env = {}
     end
 
+    def binary_path
+      @binary_path ||= find_binary
+    end
+
     private
 
     def find_binary
-      # Check common locations
-      paths = [
-        `which summarize 2>/dev/null`.strip,
-        "/usr/local/bin/summarize",
-        "/opt/homebrew/bin/summarize"
-      ]
+      path = `which summarize 2>/dev/null`.strip
+      return path unless path.empty?
 
-      found = paths.find { |p| !p.empty? && File.executable?(p) }
-      found || "summarize"
+      ["/usr/local/bin/summarize", "/opt/homebrew/bin/summarize"].find { |p| File.executable?(p) } || "summarize"
     end
   end
 end

@@ -59,6 +59,41 @@ RSpec.describe Summarize::Options do
       expect(args).to be_empty
     end
 
+    it "maps slides boolean flag" do
+      args = described_class.new(slides: true).to_args
+      expect(args).to eq(["--slides"])
+    end
+
+    it "maps slides_debug boolean flag" do
+      args = described_class.new(slides_debug: true).to_args
+      expect(args).to eq(["--slides-debug"])
+    end
+
+    it "maps slides_ocr boolean flag" do
+      args = described_class.new(slides_ocr: true).to_args
+      expect(args).to eq(["--slides-ocr"])
+    end
+
+    it "maps slides_dir to --slides-dir flag" do
+      args = described_class.new(slides_dir: "./my-slides").to_args
+      expect(args).to eq(["--slides-dir", "./my-slides"])
+    end
+
+    it "maps slides_max to --slides-max flag" do
+      args = described_class.new(slides_max: 10).to_args
+      expect(args).to eq(["--slides-max", "10"])
+    end
+
+    it "maps debug boolean flag" do
+      args = described_class.new(debug: true).to_args
+      expect(args).to eq(["--debug"])
+    end
+
+    it "maps cli to --cli flag" do
+      args = described_class.new(cli: "claude").to_args
+      expect(args).to eq(["--cli", "claude"])
+    end
+
     it "combines multiple options" do
       args = described_class.new(
         model: "google/gemini-3-flash-preview",
