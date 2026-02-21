@@ -46,5 +46,28 @@ module Summarize
     def extract(input, **opts)
       Client.new.extract(input, **opts)
     end
+
+    # Eagerly check CLI version. Returns the version string or raises
+    # VersionMismatchError / BinaryNotFoundError.
+    #
+    #   Summarize.check_version!  # => "0.10.0"
+    #
+    def check_version!
+      config = configuration
+      path = config.binary_path
+
+      unless path == "summarize" || File.executable?(path)
+        raise BinaryNotFoundError, path
+      end
+
+      installed = config.cli_version
+      required = MINIMUM_CLI_VERSION
+
+      if installed && Gem::Version.new(installed) < Gem::Version.new(required)
+        raise VersionMismatchError.new(installed, required)
+      end
+
+      installed
+    end
   end
 end

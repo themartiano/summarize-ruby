@@ -28,4 +28,17 @@ module Summarize
       super("summarize exited with code #{exit_code}: #{stderr}")
     end
   end
+
+  class VersionMismatchError < Error
+    attr_reader :installed_version, :required_version
+
+    def initialize(installed_version, required_version)
+      @installed_version = installed_version
+      @required_version = required_version
+      super(
+        "summarize CLI #{installed_version} is too old (requires >= #{required_version}). " \
+        "Update via: npm i -g @steipete/summarize"
+      )
+    end
+  end
 end

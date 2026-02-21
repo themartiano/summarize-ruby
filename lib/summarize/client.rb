@@ -68,6 +68,8 @@ module Summarize
     end
 
     def stream(input, **opts, &block)
+      validate_binary!
+      validate_version!
       args = build_args(input, stream: true, json: false, **opts)
 
       full_output = +""
@@ -134,6 +136,7 @@ module Summarize
 
     def execute(args)
       validate_binary!
+      validate_version!
 
       Open3.capture3(command_env, *args)
     end
@@ -144,6 +147,18 @@ module Summarize
       return if File.executable?(path)
 
       raise BinaryNotFoundError, path
+    end
+
+    def validate_version!
+      return if config.skip_version_check
+
+      installed = config.cli_version
+      return unless installed # can't detect — skip gracefully
+
+      required = Summarize::MINIMUM_CLI_VERSION
+      if Gem::Version.new(installed) < Gem::Version.new(required)
+        raise VersionMismatchError.new(installed, required)
+      end
     end
 
     def handle_error!(status, stderr)
